@@ -145,7 +145,7 @@ def lambda_handler(event, context):
                 if (vol_status == 'gp3'):
                         message = message + vol + '\t\t' + account_id + '\t\t\t\t' +'Successful\n'
                 else:
-                        message = message + vol + '\t\t' + account_id + '\t\t\t\t' + 'Failed. Please check volume status\n'
+                        message = message + vol + '\t\t' + account_id + '\t\t\t\t' + 'Failed. Please check CloudWatch Logs for details\n'
                 
         message = message + '==============================End of Message ======================================\n'
     
