@@ -39,6 +39,7 @@ aws iam attach-role-policy --policy-arn arn:aws:iam::1234567890:policy/<name of 
 - Use the IAM role you created in the previous steps
 - You can choose "None" for VPC or select any VPC in your account that can access the AWS APIs.
 - If you are using the AWS console, delete the skeleton Lambda code and paste in the contents of the file `gp3_migrate.py`
+- Add in the appropriate values for your DynamoDB table name and SNS topic.
 - Leave Lamda memory at 128 MB
 - Change the timeout to 1 minute
 
