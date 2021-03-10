@@ -14,7 +14,7 @@ This repository contains code that makes it easy for AWS customers to upgrade to
 This release of the gp3 migration utility requires some manual setup. The next release will include SAM and CloudFormation templates that will make it easy to deploy and run this utility in your target AWS account.
 
 1. Create a DynamoDB table in your target AWS account and region with a partition key named `volume_id`
-1. Create an standard SNS topic using  default options in the same account and region. Create an email subscription against this topic and note down the resource ARN.
+1. Create an standard SNS topic using  default options in the same account and region as your DynamoDB table. Create an email subscription against this topic and note down the resource ARN.
 
 ## Getting Started <a name="Start"></a>
 
