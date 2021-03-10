@@ -33,7 +33,7 @@ aws iam create-policy --policy-name <name of your IAM policy> --policy-document 
 aws iam attach-role-policy --policy-arn arn:aws:iam::1234567890:policy/<name of your IAM policy> --role-name <name of your IAM role>
 ```
 
-1. Create a Lambda funciton from scratch
+1. Create a Lambda function from scratch
 
 - Choose Python 3.8 for the run time
 - Use the IAM role you created in the previous steps
@@ -50,7 +50,7 @@ There will be no changes made to any of your other EBS volume types like io1, io
 
 You will need to run your Lambda program at least two times and wait at least 60 seconds before each run. There is no limit to the number of times you can run your Lambda. The first execution will kick off the upgrade from gp2 to gp3. Depending on the number and size of EBS volumes in you account, you will need to wait for a few minutes for the conversion to complete. The subsequent runs after the first run will do a status check and send an email (via SNS) with a summary of the results.
 
-## Next Stepe <a name="Next"></a>
+## Next Steps <a name="Next"></a>
 
 We are actively iterating on this program to add more features and functionality.  We'd love to get your input and hear from you. Please create any Github issues for additional features you'd like to see. 
 
