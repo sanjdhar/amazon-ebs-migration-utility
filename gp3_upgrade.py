@@ -7,9 +7,10 @@ from datetime import datetime
 def lambda_handler(event, context):
     
     # Create a DynamoDB table with a simple primary key "volume_id" and input the name in the below variable
-    DDB_TABLE_NAME = "gp3_upgrade"
-
-    SNS_ARN="arn:aws:sns:us-east-1:065399810791:gp3_upgrade"
+    DDB_TABLE_NAME = "<Your DynamoDB Table Name Goes Here"
+    
+    # Add your SNS ARN below with the proper AWS account number
+    SNS_ARN="arn:aws:sns:us-east-1:1234567890:<your SNS topic name>"
 
     dynamodb = boto3.resource('dynamodb')
 
