@@ -1,6 +1,6 @@
 # gp3 migration utility v1.0
 
-This repository contains code that makes it easy for AWS customers to upgrade to the latest EBS gp3 volumes. By migrating to gp3, customer can save up to 20% lower price-point per GB than existing gp2 volumes.
+This repository contains code that makes it easy for AWS customers to upgrade to the latest EBS gp3 volumes. By migrating to gp3, customers can save up to 20% lower price-point per GB than existing gp2 volumes.
 
 ## Table of Contents
 1. [Pre-requisites](#Pre)
