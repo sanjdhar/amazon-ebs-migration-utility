@@ -5,7 +5,7 @@ This repository contains code that makes it easy for AWS customers to upgrade to
 ## Table of Contents
 1. [Pre-requisites](#Pre)
 1. [Getting Started](#Start)
-1. [Key Details](#Key)
+1. [Key Details (Do not skip this section)](#Key)
 1. [Next Steps](#Next)
 1. [License](#License)
 
