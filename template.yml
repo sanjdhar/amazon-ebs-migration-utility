@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    SAM Template for EBS volume conversion
+
+Resources:
+
+    EBSVolumeConverter:
+        Type: AWS::Serverless::Function
+        Properties:
+            CodeUri: s3://sanjdhar-sam-templates/gp3_upgrade.zip
+            Handler: lambda_handler
+            Runtime: python3.8
+            Timeout: 120
+                MemorySize: 128
+                Policies:
+                # Give just CRUD permissions to one table
+                - DynamoDBCrudPolicy:
+                    TableName: !Ref EventsTable
+                Environment:
+                    Variables:
+                    DDB_TABLE_NAME: !Ref EBSVolumeTable
+                    REPEAT_COUNT: 2
+
+    EBSVolumeTable:
+        Type: 'AWS::Serverless::SimpleTable'
+        Properties:
+            PrimaryKey:
+                Name: volume_id
+                Type: String
