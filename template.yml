@@ -10,7 +10,7 @@ Resources:
         Properties:
             CodeUri: s3://sanjdhar-sam-templates/gp3_upgrade.zip
             Handler: lambda_handler
-            Runtime: python3.8
+            Runtime: python3.7
             Timeout: 120
             MemorySize: 128
             Policies:
