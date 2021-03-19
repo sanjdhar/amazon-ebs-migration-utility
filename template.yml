@@ -16,7 +16,7 @@ Resources:
                 Policies:
                 # Give just CRUD permissions to one table
                 - DynamoDBCrudPolicy:
-                    TableName: !Ref EventsTable
+                    TableName: !Ref EBSVolumeTable
                 Environment:
                     Variables:
                     DDB_TABLE_NAME: !Ref EBSVolumeTable
