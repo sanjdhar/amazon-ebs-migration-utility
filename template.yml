@@ -19,8 +19,8 @@ Resources:
                 TableName: !Ref EBSVolumeTable
             Environment:
                 Variables:
-                DDB_TABLE_NAME: !Ref EBSVolumeTable
-                REPEAT_COUNT: 2
+                    DDB_TABLE_NAME: !Ref EBSVolumeTable
+                    REPEAT_COUNT: 2
 
     EBSVolumeTable:
         Type: 'AWS::Serverless::SimpleTable'
