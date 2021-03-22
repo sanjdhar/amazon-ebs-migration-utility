@@ -9,7 +9,7 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             CodeUri: s3://sanjdhar-sam-templates/gp3_upgrade.zip
-            Handler: lambda_handler
+            Handler: gp3_migrate_lambda.lambda_handler
             Runtime: python3.7
             Timeout: 120
             MemorySize: 128
@@ -20,7 +20,7 @@ Resources:
             Environment:
                 Variables:
                     DDB_TABLE_NAME: !Ref EBSVolumeTable
-                    REPEAT_COUNT: 2
+                    SNS_ARN: 'arn:aws:sns:us-east-1:065399810791:gp3_upgrade'
 
     EBSVolumeTable:
         Type: 'AWS::Serverless::SimpleTable'
