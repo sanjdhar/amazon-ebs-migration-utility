@@ -9,7 +9,7 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             CodeUri: s3://sanjdhar-sam-templates/gp3_upgrade.zip
-            Handler: gp3_migrate_lambda.lambda_handler
+            Handler: gp3_upgrade.lambda_handler
             Runtime: python3.7
             Timeout: 120
             MemorySize: 128
