@@ -4,15 +4,17 @@ import decimal
 import os
 from botocore.exceptions import ClientError
 from datetime import datetime
-
 def lambda_handler(event, context):
 
-    # Create a DynamoDB table with a simple primary key "volume_id" and input the name in the below variable
-    #DDB_TABLE_NAME = "gp3_upgrade"
-    #SNS_ARN="arn:aws:sns:us-east-1:065399810791:gp3_upgrade"
-    
-    DDB_TABLE_NAME = os.environ['DDB_TABLE_NAME']
-    SNS_ARN=os.environ['SNS_ARN']
+    if 'DDB_TABLE_NAME' in os.environ and os.environ['DDB_TABLE_NAME'] != '':
+        DDB_TABLE_NAME = os.environ['DDB_TABLE_NAME']
+    else:
+        return("Missing Lambda environment variable DDB_TABLE_NAME. Please make sure Lambda environment variable DDB_TABLE_NAME is set with the name of your DynamoDB table\n")
+        
+    if 'SNS_ARN' in os.environ and os.environ['SNS_ARN'] != '':
+        SNS_ARN = os.environ['SNS_ARN']
+    else:
+        return("Missing Lambda environment variable SNS_ARN. Please make sure Lambda environment variable SNS_ARN is set with the name of your SNS topic\n") 
     
     dynamodb = boto3.resource('dynamodb')
     
