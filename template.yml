@@ -1,30 +1,95 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: >
-    SAM Template for EBS volume conversion
 
-Resources:
+Parameters:
+  TargetEmail:
+    Type: String
+    Description: Email for notifications
+    ConstraintDescription: You should enter a valid email
 
-    EBSVolumeConverter:
-        Type: AWS::Serverless::Function
-        Properties:
-            CodeUri: s3://sanjdhar-sam-templates/gp3_upgrade.zip
-            Handler: gp3_upgrade.lambda_handler
-            Runtime: python3.7
-            Timeout: 120
-            MemorySize: 128
-            Policies:
-            # Give just CRUD permissions to one table
-            - DynamoDBCrudPolicy:
-                TableName: !Ref EBSVolumeTable
-            Environment:
-                Variables:
-                    DDB_TABLE_NAME: !Ref EBSVolumeTable
-                    SNS_ARN: 'arn:aws:sns:us-east-1:065399810791:gp3_upgrade'
+Resources: 
+  LambdaRole: 
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Principal: 
+              Service: 
+                - "lambda.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+  RolePolicies: 
+    Type: "AWS::IAM::Policy"
+    Properties: 
+      PolicyName: "ebsconverter-policy"
+      PolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: Allow
+            Action: 
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "arn:aws:logs:*:*:*"
+          - Effect: Allow
+            Action: 
+              - sns:Publish
+            Resource: !Ref EBSConvSNS
+          - Effect: Allow
+            Action: 
+              - iam:GetRole
+              - iam:ListRoles
+              - kms:DescribeKey
+              - kms:GetKeyPolicy
+              - kms:ListGrants
+              - kms:ListKeyPolicies
+              - kms:ListKeys
+              - ec2:DescribeTags
+              - ec2:DescribeVolumeAttribute
+              - ec2:DescribeVolumeStatus
+              - ec2:DescribeVolumes
+              - ec2:DescribeVolumesModifications
+              - ec2:ModifyVolume
+              - ec2:ModifyVolumeAttribute
+            Resource: "*"
+          - Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+            Resource: !GetAtt EBSVolumeTable.Arn
 
-    EBSVolumeTable:
-        Type: 'AWS::Serverless::SimpleTable'
-        Properties:
-            PrimaryKey:
-                Name: volume_id
-                Type: String
+      Roles: 
+        - Ref: "LambdaRole"
+
+  EBSConvSNS:
+    Type: AWS::SNS::Topic
+    Properties: 
+      Subscription: 
+        - Endpoint: !Ref TargetEmail
+          Protocol: 'email'
+      
+
+  EBSVolumeConverter:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://sdhar-s3-bucket1/gp3_upgrade.zip
+      Handler: gp3_upgrade.lambda_handler
+      Runtime: python3.7
+      Timeout: 120
+      MemorySize: 128
+      Role: !GetAtt LambdaRole.Arn
+      Environment:
+          Variables:
+              DDB_TABLE_NAME: !Ref EBSVolumeTable
+              SNS_ARN: !Ref EBSConvSNS
+
+  EBSVolumeTable:
+    Type: 'AWS::Serverless::SimpleTable'
+    Properties:
+        PrimaryKey:
+            Name: volume_id
+            Type: String
