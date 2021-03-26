@@ -29,7 +29,7 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ## Deployment
 
-The easiest way to deploy this stack is from the [AWS Serverless Application Repository]((https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~ebs-volume-converter)). You can also use the the SAM CLI to deploy this at scale across multiple AWS accounts and in differnet AWS regions.
+The easiest way to deploy this stack is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~ebs-volume-converter). You can also use the the SAM CLI to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in differnet AWS regions.
 
 ## Next Steps
 
