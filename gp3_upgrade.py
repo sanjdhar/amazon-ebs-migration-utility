@@ -4,6 +4,7 @@ import decimal
 import os
 from botocore.exceptions import ClientError
 from datetime import datetime
+
 def lambda_handler(event, context):
 
     if 'DDB_TABLE_NAME' in os.environ and os.environ['DDB_TABLE_NAME'] != '':
@@ -101,7 +102,7 @@ def lambda_handler(event, context):
             
         )
         vol_list=response['Item']['vol_list']
-    
+        message=''
         for vol in vol_list:
                 volume = ec2.Volume(vol)
                 if volume.volume_type == 'gp2':
@@ -137,8 +138,15 @@ def lambda_handler(event, context):
                 }
                 
             )
+        response = table.get_item(
+            Key={
+                'volume_id': 'vol-meta-' + account_id,
+            }
+            
+        )
         vol_list=response['Item']['vol_list']
-    
+        
+        
         for vol in vol_list:
                 response = table.get_item(
                     Key={
@@ -167,7 +175,9 @@ def lambda_handler(event, context):
                     'run_seq': 1,
                 }
         ) 
-    
+        
+        run_cnt=1
+
         try:
             for v in volume_iterator:
                                      
@@ -196,4 +206,9 @@ def lambda_handler(event, context):
     
         except ClientError as e:
             print(e.response['Error']['Message'])
+
+    if (run_cnt == 1):
+        return("Please make sure you check your email and click the link to confirm your subscription. Please wait at least a minute before running this Lambda again.")
+    else:
+        return("Please check your email to review the results of your EBS migration")
 
