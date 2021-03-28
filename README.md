@@ -9,7 +9,7 @@ This repository contains code that makes it easy for AWS customers to upgrade to
 
 [![sar-logo]](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility)
 
-The easiest way to get started using the is to deploy this app from the [Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). Once deployed, check the CloudFormation console to find the list of resources that have been deployed to your account. At a mimimum you will find a Lambda function, DynamoDB table, SNS Topic, IAM role and IAM policy created. *Do not* invoke the Lambda function until you've read this entire README.
+The easiest way to get started using the is to deploy this app from the [Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). Once deployed, check the CloudFormation console to find the list of resources that have been deployed to your account. At a minimum you will find a Lambda function, DynamoDB table, SNS Topic, IAM role and IAM policy created. *Do not* invoke the Lambda function until you've read this entire README.
 
 As part of deploying this stack, you will need to provide a valid email address that will be used to send the results summary of the upgrade from gp2 to gp3. You will receive a confirmation email from AWS Notifications (no-reply@sns.amazonaws.com) once the stack has been deployed. You will need to click the link in the email to confirm your email subscription. You will not be able to receive the output results from the Lambda until you confirm your email subscription.
 
@@ -29,11 +29,11 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ## Deployment
 
-The easiest way to deploy this stack is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). You can also use the the SAM CLI to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in differnet AWS regions.
+The easiest way to deploy this stack is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). You can also use the the SAM CLI to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in different AWS regions.
 
 ## Next Steps
 
-We are actively iterating on this program to add more features and functionality.  We'd love to get your input and hear from you. Please create any Github issues for additional features you'd like to see.
+We are actively iterating on this program to add more features and functionality.  We'd love to get your input and hear from you. Please create any GitHub issues for additional features you'd like to see.
 
 ## License
 
