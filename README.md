@@ -23,7 +23,7 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ![First Run](images/lambda-first-run.png)
 
- Depending on how many and how large your gp2 volumes are, the Lambda may take anywhere from a few seconds to a couple of minutes to complete. Please wait at least 60 seconds before invoking the Lambda function again. There is no limit to the number of times you can invoke your Lambda function. As mentioned earlier, the first execution will kick off the upgrade from gp2 to gp3.  The subsequent runs after the first run will do a status check on the state of your gp2/gp3 volumes and will send out an email (via SNS) with a summary of the results.
+ Depending on how many gp2 volumes are present in your AWS account and target region, the Lambda may take anywhere from a few seconds to a couple of minutes to complete. Please note that even though the Lambda function may complete in a couple of minutes, depending on how large your gp2 volumes are, the upgrade will be running in the background and may take a couple of hours to complete. There is no limit to the number of times you can invoke your Lambda function. Please wait at least 60 seconds before each Lambda function invocation. As mentioned earlier, the first execution will kick off the upgrade from gp2 to gp3.  The subsequent runs after the first run will do a status check on the state of your gp2/gp3 volumes and will send out an email (via SNS) with a summary of the results.
 
  ![Next Run](images/lambda-subsequent-runs.png)
 
