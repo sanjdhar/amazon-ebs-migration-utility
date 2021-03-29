@@ -7,7 +7,7 @@ Metadata:
     Description: Amazon EBS Volume Migration Utility
     Author: Sanjay Dhar
     SpdxLicenseId: MIT-0
-    LicenseUrl: LICENSE.txt
+    LicenseUrl: LICENSE
     ReadmeUrl: README.md
     Labels: ['gp2', 'gp3', 'EBS']
     HomePageUrl: https://github.com/sanjdhar/amazon-ebs-migration-utility
