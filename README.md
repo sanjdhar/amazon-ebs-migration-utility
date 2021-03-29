@@ -29,7 +29,11 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ## Deployment
 
-The easiest way to deploy this stack is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). You can also use the the SAM CLI to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in different AWS regions.
+The easiest way to deploy this stack is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). You can also use the the SAM CLI along with the provided ```packaged.yaml``` file to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in different AWS regions. You can use the below example syntax to integrate your deployment into your CI/CD process and deploy this utility at scale in your enterprise environment.
+
+```bash
+sam deploy --template-file </path/to/packaged.yaml> --stack-name <your stack name> --capabilities CAPABILITY_IAM --parameter-overrides "TargetEmail=name@example.com"
+```
 
 ## Next Steps
 
